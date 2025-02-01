@@ -1,0 +1,666 @@
+:root {
+  --primary-color: #002244;
+  --secondary-color: #fb4f14;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--light-color);
+}
+
+/* Navbar Styling */
+.navbar {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #004488 100%);
+  padding: 1rem 0;
+  height: 70px;
+  z-index: 1040;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.logo_com {
+  color: var(--secondary-color);
+  font-weight: 500;
+}
+
+/* Toggle Button Styling */
+#sidebarToggle {
+  position: fixed;
+  left: 245px; /* Sesuaikan posisi lebih ke kanan */
+  bottom: 20px;
+  z-index: 1050;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#sidebarToggle:hover {
+  background-color: #003366;
+  transform: scale(1.1);
+}
+
+#sidebarToggle i {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+/* Adjust toggle button when sidebar is collapsed */
+.sidebar.collapsed ~ main #sidebarToggle {
+  left: -20px;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;
+  padding: 20px 20px 0 20px;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  background-color: white;
+  width: 250px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Collapsed Sidebar */
+.sidebar.collapsed {
+  margin-left: -250px;
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: var(--dark-color);
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  border-radius: 0.5rem;
+  margin-bottom: 5px;
+}
+
+.sidebar .nav-link:hover {
+  color: var(--primary-color);
+  background-color: var(--light-color);
+}
+
+.sidebar .nav-link.active {
+  color: var(--primary-color);
+  background-color: var(--light-color);
+}
+
+/* Main Content Styling */
+main {
+  margin-top: 20px;
+  margin-left: 250px;
+  padding: 0 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Expanded Main Content */
+main.expanded {
+  margin-left: 0;
+}
+
+.card {
+  border: none;
+  transition: all 0.3s ease;
+  border-radius: 0.5rem;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+/* Job Card Styling */
+.job-card {
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+}
+
+/* Stats Cards */
+.border-left-primary {
+  border-left: 0.25rem solid var(--primary-color) !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    margin-left: -250px;
+  }
+
+  .sidebar.collapsed {
+    margin-left: 0;
+  }
+
+  main {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  main.expanded {
+    margin-left: 0;
+  }
+
+  /* Overlay when sidebar is shown on mobile */
+  .sidebar:not(.collapsed)::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+
+  #sidebarToggle {
+    left: auto;
+    right: 20px;
+  }
+
+  .sidebar.collapsed ~ main #sidebarToggle {
+    left: auto;
+  }
+}
+
+/* Animation for smooth transitions */
+.sidebar,
+main,
+#sidebarToggle {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Optional: Rotate toggle icon when sidebar is collapsed */
+.sidebar.collapsed ~ main #sidebarToggle i {
+  transform: rotate(180deg);
+}
+
+/* Utility Classes */
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
+
+.font-weight-bold {
+  font-weight: 600 !important;
+}
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+* {
+  box-sizing: inherit;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #f8f9fa;
+  overflow-x: hidden;
+  position: relative;
+}
+a:focus,
+.button:focus,
+button:focus {
+  text-decoration: none;
+  outline: none;
+}
+a:focus {
+  text-decoration: none;
+}
+
+a:focus,
+a:hover {
+  text-decoration: none !important;
+  opacity: 0.85;
+}
+a {
+  text-decoration: none !important;
+  transition: all 0.3s ease;
+}
+a.white {
+  color: white !important;
+}
+
+a.black {
+  color: black !important;
+}
+
+a.primary {
+  color: #002244 !important;
+}
+
+/* Navbar Styling */
+.navbar {
+  background: linear-gradient(135deg, #002244 0%, #004488 100%);
+  padding: 1rem 0;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.logo_com {
+  color: #ffd700;
+  font-weight: 500;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+/* Main Content Styling */
+.main-content {
+  background-color: #ffffff;
+  min-height: calc(100vh - 70px);
+}
+
+.content-header {
+  border-bottom: 2px solid #f8f9fa;
+  padding-bottom: 1rem;
+}
+
+/* Job Card Styling */
+.job-card {
+  transition: all 0.3s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-2px);
+}
+
+.job-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.job-link:hover {
+  color: inherit;
+}
+
+.card {
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.card-title {
+  color: #002244;
+  font-weight: 600;
+}
+
+/* Badge Styling */
+.badge {
+  padding: 0.5em 1em;
+  font-weight: 500;
+}
+
+/* User Info Styling */
+.user-info {
+  padding: 0.5rem 1rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Custom Button Styling */
+.btn-outline-light {
+  border-width: 2px;
+  font-weight: 500;
+}
+
+.btn-outline-light:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+}
+
+/* User Dropdown Styling */
+.nav-link.dropdown-toggle {
+  color: white !important;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.nav-link.dropdown-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-menu {
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0;
+  z-index: 1045;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.dropdown-item i {
+  width: 20px;
+  text-align: center;
+}
+
+/* Responsive Styling */
+@media (max-width: 991.98px) {
+  /* Navbar */
+  .navbar {
+    padding: 0.5rem;
+  }
+
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+
+  .navbar-nav {
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 0.5rem;
+  }
+
+  .nav-item {
+    width: 100%;
+    margin: 0.25rem 0;
+  }
+
+  .nav-link {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 56px; /* Sesuaikan dengan tinggi navbar mobile */
+    left: -250px;
+    height: calc(100vh - 56px);
+    z-index: 1030;
+    transition: all 0.3s ease-in-out;
+    background-color: white;
+    width: 250px;
+  }
+
+  .sidebar.collapsed {
+    left: 0;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+
+  /* Main Content */
+  main {
+    margin-left: 0 !important;
+    padding: 1rem;
+    width: 100% !important;
+  }
+
+  /* Toggle Button */
+  #sidebarToggle {
+    left: auto;
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .sidebar.collapsed ~ main #sidebarToggle {
+    left: auto;
+  }
+}
+
+/* Small devices (phones) */
+@media (max-width: 575.98px) {
+  /* Navbar adjustments */
+  .navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 0.5rem;
+  }
+
+  /* Main content adjustment */
+  main {
+    margin-top: 60px; /* Add space for fixed navbar */
+    padding: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Sidebar adjustments */
+  .sidebar {
+    top: 56px;
+    padding-bottom: 70px; /* Space for toggle button */
+  }
+
+  /* Ensure clickable elements are actually clickable */
+  .nav-link,
+  .dropdown-item,
+  .btn,
+  a,
+  button {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Dropdown menu adjustments */
+  .dropdown-menu {
+    position: absolute !important;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+  }
+
+  /* Card adjustments */
+  .card {
+    position: relative;
+    z-index: 1;
+  }
+
+  .navbar-brand {
+    font-size: 1rem;
+    margin-right: 0;
+  }
+
+  .logo_com {
+    font-size: 0.9rem;
+  }
+
+  .navbar-nav {
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+  }
+
+  .nav-item {
+    margin: 0.15rem 0;
+  }
+
+  .nav-link {
+    padding: 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  /* Dropdown */
+  .dropdown-menu {
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem;
+    border: none;
+    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .dropdown-item {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    top: 56px;
+    width: 240px;
+    padding: 1rem;
+  }
+
+  .sidebar .nav-link {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Main Content */
+  main {
+    padding: 0.5rem;
+  }
+
+  .card {
+    margin-bottom: 0.5rem;
+  }
+
+  .card-body {
+    padding: 0.75rem;
+  }
+
+  /* Toggle Button */
+  #sidebarToggle {
+    width: 35px;
+    height: 35px;
+    right: 15px;
+    bottom: 15px;
+  }
+
+  #sidebarToggle i {
+    font-size: 0.9rem;
+  }
+}
+
+/* Very Small devices */
+@media (max-width: 360px) {
+  .navbar {
+    padding: 0.25rem;
+  }
+
+  main {
+    margin-top: 56px;
+  }
+
+  .nav-item {
+    margin: 0.15rem 0;
+  }
+
+  .nav-link {
+    padding: 0.4rem;
+  }
+
+  .navbar-brand {
+    font-size: 0.9rem;
+  }
+
+  .logo_com {
+    font-size: 0.8rem;
+  }
+
+  .sidebar {
+    width: 220px;
+  }
+
+  main {
+    padding: 0.25rem;
+  }
+
+  #sidebarToggle {
+    width: 32px;
+    height: 32px;
+    right: 10px;
+    bottom: 10px;
+  }
+}
+
+/* Fix for iOS Safari bottom bar */
+@supports (-webkit-touch-callout: none) {
+  body {
+    padding-bottom: 70px;
+  }
+
+  .sidebar {
+    height: calc(100vh - 70px - 56px);
+  }
+
+  .nav-link,
+  .dropdown-item,
+  .btn,
+  a,
+  button {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Fix for sticky hover states on mobile */
+@media (hover: hover) {
+  .nav-link:hover,
+  .dropdown-item:hover,
+  .btn:hover {
+    opacity: 0.8;
+  }
+}
+
+/* Ensure content is scrollable but not horizontally */
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.sidebar {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
