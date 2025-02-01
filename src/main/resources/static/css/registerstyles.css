@@ -1,0 +1,160 @@
+:root {
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
+  --success-color: #198754;
+  --white-color: #ffffff;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--light-color);
+}
+
+/* Left Side Styles */
+.left-side {
+  position: relative;
+  background-image: url("../assets/city-skyline.png");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(13, 110, 253, 0.9),
+    rgba(13, 110, 253, 0.7)
+  );
+}
+
+.brand-container {
+  position: relative;
+  padding: 2rem;
+  z-index: 1;
+}
+
+.brand {
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--white-color);
+  margin: 0;
+}
+
+.brand-highlight {
+  background-color: var(--success-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 1.8rem;
+  color: var(--white-color);
+}
+
+/* Form Side Styles */
+.form-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 460px;
+  padding: 2rem;
+  background-color: var(--white-color);
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+/* Form Elements Styles */
+.form-floating {
+  position: relative;
+}
+
+.form-control,
+.form-select {
+  height: 3.5rem;
+  border: 1.5px solid #dee2e6;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+  transform: translateY(-1px);
+}
+
+/* Alert Styles */
+.alert {
+  border-radius: 0.5rem;
+  border: none;
+}
+
+.alert-danger {
+  background-color: #fff2f2;
+  color: #dc3545;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+  .form-side {
+    padding: 1rem;
+  }
+
+  .form-container {
+    padding: 1.5rem;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-container {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Form Validation Styles */
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+  border-color: #dc3545;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.was-validated .form-control:valid,
+.form-control.is-valid {
+  border-color: #198754;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}

@@ -1,10 +1,241 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-</head>
-<body>
-    <h1>DASHBOARD</h1>
-</body>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - MyJobPortal</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/dashboardstyles.css}" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          MyJobPortal<span class="logo_com">.com</span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <!-- Navigation Links -->
+            <li class="nav-item">
+              <a class="nav-link active" href="/dashboard">
+                <i class="fas fa-home"></i> Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/profile">
+                <i class="fas fa-user"></i> Profile
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </a>
+            </li>
+
+            <!-- User Dropdown -->
+            <li class="nav-item dropdown ms-3">
+              <a
+                class="nav-link dropdown-toggle d-flex align-items-center"
+                href="#"
+                id="userDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+              >
+                <i class="fas fa-user-circle fa-lg me-2"></i>
+                <span th:text="${username}">Username</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <span class="dropdown-item-text">
+                    <i class="fas fa-user me-2"></i>
+                    Signed in as <strong th:text="${username}">Username</strong>
+                  </span>
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="/profile">
+                    <i class="fas fa-user-cog me-2"></i>Profile Settings
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item text-danger" href="/logout">
+                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
+          <div class="position-sticky pt-3">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="/dashboard">
+                  <i class="fas fa-tachometer-alt me-2"></i>
+                  Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/jobs">
+                  <i class="fas fa-briefcase me-2"></i>
+                  Job Listings
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/applications">
+                  <i class="fas fa-file-alt me-2"></i>
+                  Applications
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/saved-jobs">
+                  <i class="fas fa-bookmark me-2"></i>
+                  Saved Jobs
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="sidebar-overlay"></div>
+
+        <!-- Main Content -->
+        <main id="main" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <!-- Toggle Button -->
+          <button
+            id="sidebarToggle"
+            class="d-flex align-items-center justify-content-center"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+          >
+            <h1 class="h2">
+              Welcome,
+              <span
+                th:text="${#strings.substringBefore(username,'@')}"
+                class="text-primary"
+                >Username</span
+              >
+            </h1>
+          </div>
+
+          <!-- Dashboard Content -->
+          <div class="row">
+            <!-- Stats Cards -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div
+                        class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+                      >
+                        Total Applications
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        10
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-file-alt fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Job Listings -->
+            <div class="col-12">
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">
+                    Recent Job Listings
+                  </h6>
+                </div>
+                <div class="card-body">
+                  <div th:each="job : ${jobs}" class="job-card mb-3">
+                    <!-- Job content -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Sidebar Toggle Script -->
+    <script>
+      $(document).ready(function () {
+        // Toggle sidebar
+        $("#sidebarToggle").on("click", function (e) {
+          e.preventDefault();
+          $("#sidebar").toggleClass("collapsed");
+          $("#main").toggleClass("expanded");
+        });
+
+        // Close sidebar when clicking overlay
+        $(".sidebar-overlay").on("click", function () {
+          $("#sidebar").removeClass("collapsed");
+          $("#main").removeClass("expanded");
+        });
+
+        // Handle window resize
+        $(window).resize(function () {
+          if ($(window).width() <= 991.98) {
+            $("#sidebar").removeClass("collapsed");
+            $("#main").removeClass("expanded");
+          }
+        });
+
+        // Close sidebar when clicking outside on mobile
+        $(document).on("click", function (e) {
+          if ($(window).width() <= 991.98) {
+            if (
+              !$(e.target).closest("#sidebar").length &&
+              !$(e.target).closest("#sidebarToggle").length &&
+              $("#sidebar").hasClass("collapsed")
+            ) {
+              $("#sidebar").removeClass("collapsed");
+              $("#main").removeClass("expanded");
+            }
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
