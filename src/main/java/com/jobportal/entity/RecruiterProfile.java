@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class RecruiterProfile {
 
     @Id
-    private int recruiterProfileId;
+    private int userAccountId;
 
     @OneToOne
     @JoinColumn(name = "user_id")
@@ -26,8 +26,8 @@ public class RecruiterProfile {
     public RecruiterProfile() {
     }
 
-    public RecruiterProfile(int recruiterProfileId, User userId, String firstName, String lastName, String city, String state, String country, String company, String photoProfile) {
-        this.recruiterProfileId = recruiterProfileId;
+    public RecruiterProfile(int userAccountId, User userId, String firstName, String lastName, String city, String state, String country, String company, String photoProfile) {
+        this.userAccountId = userAccountId;
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -42,12 +42,12 @@ public class RecruiterProfile {
         this.userId = user;
     }
 
-    public int getRecruiterProfileId() {
-        return recruiterProfileId;
+    public int getUserAccountId() {
+        return userAccountId;
     }
 
-    public void setRecruiterProfileId(int recruiterProfileId) {
-        this.recruiterProfileId = recruiterProfileId;
+    public void setUserAccountId(int userAccountId) {
+        this.userAccountId = userAccountId;
     }
 
     public User getUserId() {
